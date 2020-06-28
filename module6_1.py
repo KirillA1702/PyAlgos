@@ -1,7 +1,10 @@
 # done
 
-from sys import getsizeof, platform, version
+from sys import getsizeof, version_info
 from random import randint
+from memory_profiler import profile
+import platform
+from distutils import util
 
 
 def calc_size(x):
@@ -19,7 +22,7 @@ def calc_size(x):
 
     return res_size
 
-
+@profile
 def module_3():
 
     array = [randint(-50, 50) for i in range(50)]
@@ -55,7 +58,7 @@ for i in res_module_3.keys():
 print(f'\nСписок переменных: {res_module_3}')
 print(f'Общий размер переменных: {size_of_all_var_3} байт\n')
 
-
+@profile
 def module_3_2():
 
     array = [randint(-50, 50) for i in range(50)]
@@ -81,7 +84,7 @@ for i in res_module_3_2.keys():
 print(f'\nСписок переменных: {res_module_3_2}')
 print(f'Общий размер переменных: {size_of_all_var_3_2} байт\n')
 
-
+@profile
 def module_3_3():
 
     array = [randint(-50, 50) for i in range(50)]
@@ -106,8 +109,13 @@ print(f'\nСписок переменных: {res_module_3_3}')
 print(f'Общий размер переменных: {size_of_all_var_3_3} байт')
 
 print('*' * 100)
-print(platform)  # разрядность сиситемы х64, оперативной памяти 6 Gb
-print(version)
+print(platform)
+print(version_info)
+print(platform.python_version())
+print(platform)
+print(util.get_platform())
+print(platform.architecture())
+
 
 # Оптимизируем задачу №3 3-го урока.
 # В массиве случайных целых чисел поменять местами минимальный и максимальный элементы.
@@ -117,4 +125,7 @@ print(version)
 # переменных, при этом память используется только на хранение массива и объекта random,
 # в противоположность первым двум вариантам где на переменные выделяется
 # отдельная память для хранения.
-
+#
+# module_3 - Общий размер переменных: 344 байт
+# module_3_2 - Общий размер переменных: 316 байт
+# module_3_3 - Общий размер переменных: 260 байт
